@@ -1,14 +1,21 @@
-include "main.h"
-include "stdio.h"
+#include "main.h"
+
 /**
- * main - prints a full string
- * return :0 (success)
+ * main -  prints _putchar, followed by a new line
+ * Return: Always 0 (Success)
  */
-
-
 int main(void)
 {
-	_puts('_putchar');
+	_putchar('_');
+	_putchar('p');
+	_putchar('u');
+	_putchar('t');
+	_putchar('c');
+	_putchar('h');
+	_putchar('a');
+	_putchar('r');
+	_putchar('\n');
 
 	return (0);
 }
+
