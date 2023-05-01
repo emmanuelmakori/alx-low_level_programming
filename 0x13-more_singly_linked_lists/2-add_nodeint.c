@@ -5,6 +5,7 @@
  *              beginning of a list
  *
  * @head: pointer to the first node in the list
+ * @n : this gives back an integer to add to the latest node 
  *
  * Return: address or nothing
 */
