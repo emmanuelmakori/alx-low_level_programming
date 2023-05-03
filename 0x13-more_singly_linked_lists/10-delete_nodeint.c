@@ -8,8 +8,8 @@
  */
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	/*Declaring list and variables*/
-	listint_t *first = *head, *var;
+	/*Declaring list and tempiables*/
+	listint_t *first = *head, *temp;
 	unsigned int i = 0;
 
 	/*if head is empty*/
@@ -34,10 +34,10 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		return (-1);
 
 	/*Delete the node which corresponds the index*/
-	var = first->next;
-	first->next = var->next;
+	temp = first->next;
+	first->next = temp->next;
 
-	free(var);
+	free(temp);
 
 	return (1);
 }
