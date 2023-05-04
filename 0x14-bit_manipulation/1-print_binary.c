@@ -1,34 +1,31 @@
 #include "main.h"
-
-
 /**
- * print_binary - a function that changes decimal numbers to binary
- *
- * @n: decimal number to change
- *
- * Return: NULL
-*/
+ * print_binary - decimal to binary
+ * @n: the decimal number
+ * 
+ * 
+ * Return: NILL
+ */
 void print_binary(unsigned long int n)
 {
-	int len;
+	int flag = 0;
 	unsigned long int mask = 1;
 
-	len = _length(n);
-
-	if (len > 0) /*create mask from len of number*/
-		mask <<= len; /*move the mask to the left by len*/
-	
+    /*this allocates 63*/
+	mask <<= 63;
+	if (n == 0)
+		_putchar('0');
 
 	while (mask > 0)
 	{
-		
-		if (n & mask) 
-			_putchar('1');
-		else 
+		if ((n & mask) == 0 && flag == 1)
 			_putchar('0');
+		if ((n & mask) != 0)/*this checkes if it is not 0*/
+		{
+			_putchar('1');
+			flag = 1;
+		}
 
-		mask >>= 1; 
-
-		
+		mask = mask >> 1;
 	}
 }
