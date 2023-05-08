@@ -1,46 +1,39 @@
-#include "main"
+#include "main.h"
+#include <stdlib.h>
 
 /**
- * read_textfile - a function that reads a text 
+ * read_textfile - Reads a text file and prints it to POSIX stdout.
+ * @filename: A pointer to the name of the file.
+ * @letters: The number of letters the
+ *           
  *
- * @filename: is the data to read
- * @letters: num of letters 
- *
- * Return: 0 if it fails or number
-*/
+ * Return: If the function fails or filename is NULL - 0.
+ *         first_var/third_var - the actual number of bytes 
+ */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int data;
-	ssize_t read_check, file_write;
-	char *buffer_size;
+	ssize_t first_var, second_var, third_var;
+	char *space;
 
-	if (filename == NULL) /*check if data is available*/
+	if (filename == NULL)
 		return (0);
 
-	data = open(filename, O_RDONLY); /*open data*/
-
-	if (data == -1)
+	space = malloc(sizeof(char) * letters);
+	if (space == NULL)
 		return (0);
 
-	/*get the size of buffer_size*/
-	buffer_size = malloc(sizeof(char) * letters);
-	if (buffer_size == NULL)
+	first_var = open(filename, O_RDONLY);
+	second_var = read(first_var, space, letters);
+	third_var = write(STDOUT_FILENO, space, second_var);
+
+	if (first_var == -1 || second_var == -1 || third_var == -1 || third_var != second_var)
 	{
-		free(buffer_size);
+		free(space);
 		return (0);
 	}
 
-	read_check = read(data, buffer_size, letters);
-	if (read_check == -1) 
-		return (0);
+	free(space);
+	close(first_var);
 
-	file_write = write(STDOUT_FILENO, buffer_size, read_check); /*wrieout to file_write*/
-	if (file_write == -1 || read_check != file_write) /*check for failed task*/
-		return (0);
-
-	free(buffer_size);
-
-	close(data); 
-
-	return (file_write);
+	return (third_var);
 }
